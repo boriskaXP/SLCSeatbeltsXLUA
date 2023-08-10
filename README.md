@@ -1,6 +1,6 @@
 # SLCSeatbeltsXP
 X-Plane cockpit seatbelt sign switch compatibility script for Self-Loading Cargo
-Rewritten original https://github.com/woodss/SLCSeatbeltsXP
+Rewritten original: https://github.com/woodss/SLCSeatbeltsXP
 Lua script to use with xlua plugin: https://github.com/X-Plane/XLua
 
 # INSTRUCTIONS
