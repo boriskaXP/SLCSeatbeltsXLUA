@@ -4,6 +4,8 @@ This is a rewritten original: https://github.com/woodss/SLCSeatbeltsXP
 lua script to use with xlua plugin: https://github.com/X-Plane/XLua
 
 # INSTRUCTIONS
+1. download "SLCSeatbelts.zip"
+
 1. Copy "SLCSeatbelts" folder into: ~\YourXplaneFolder\Resources\plugins\xlua\scripts
 
 1. Copy and paste the following four lines of code to the BOTTOM of your XPUIPCOffsets.cfg file which can be found in your xplane/resources/plugins/xpuipc folder.
