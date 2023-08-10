@@ -18,3 +18,16 @@ Offset    0x341d    UINT8    1    rw    $SLCSeatbeltDetection 0 >
 ```
 That's it!!
 Enjoy your working seatbelt signs with SLC in your X-Plane aircraft :)
+
+# SUPPORTED MODELS
+- Toliss [A319, A320(NEO), A321(CEO,NEO), A346]
+- FlightFactor [A350]
+- Inibuilds [A306, A310]
+- Laminar [ZIBO(B736 - B739), A330, B744]
+- FlyJSim [B722, Q4XP]
+- Colimata [Concord]
+- SSG [E170, E195]
+- Felis [Tu-154]
+- Rotate [MD-80]
+- HotStart [Challenger 650]
+- to be added...
