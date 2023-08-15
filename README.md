@@ -21,13 +21,19 @@ Enjoy your working seatbelt signs with SLC in your X-Plane aircraft :)
 
 # SUPPORTED MODELS
 - Toliss [A319, A320(NEO), A321(CEO,NEO), A346]
-- FlightFactor [A350]
+- FlightFactor [A320*, A350, B752*, B753*, B762*, B763*, b764*]
 - Inibuilds [A306, A310]
-- Laminar [ZIBO(B736 - B739), A330, B744]
+- Laminar [ZIBO*(B736 - B739), A333**, B744*]
 - FlyJSim [B722, Q4XP]
 - Colimata [Concord]
 - SSG [E170, E195]
+- X-Crafts [E170, E175, E190, E195]
 - Felis [Tu-154]
-- Rotate [MD-80]
-- HotStart [Challenger 650]
+- Rotate [MD-80*, MD-11*]
+- HotStart [Challenger 650*]
 - to be added...
+
+```
+*Added AUTO support. Will switch seatbelt automatically at 10.000 ft
+**There is a problem with Laminar A330 because it also uses xlua plugin. X-plane can't handle 2 same plugins at the same time...
+```
