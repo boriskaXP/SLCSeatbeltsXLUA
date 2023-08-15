@@ -90,6 +90,7 @@ default = find_dataref("sim/cockpit2/switches/fasten_seat_belts")
 function resetDataref()
 	inibuilds = 0
 	toliss = 0
+	ff_A320 = 0
 	ff_A350 = 0
 	ff_B757 = 0
 	ff_B767 = 0
