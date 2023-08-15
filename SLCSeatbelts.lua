@@ -37,9 +37,6 @@
 -- HERE BE DRAGONS! MIND YOUR HEAD! HIDDEN VERGE! ABANDON HOPE! IT'S A TRAP!
 -- ****************************************************************************
 
-baseSeatbeltDataRef1 = find_dataref("sim/cockpit/switches/fasten_seat_belts")
-baseSeatbeltDataRef2 = find_dataref("sim/cockpit2/switches/fasten_seat_belts")
-
 -- Maybe change to xlua instead of FlyWithLua?
 
 SeatbeltMonitor = create_dataref("FlyWithLua/SLCSeatbelts", "number")
@@ -54,7 +51,10 @@ inibuilds = find_dataref("sim/cockpit2/switches/fasten_seat_belts")
 toliss = find_dataref("AirbusFBW/SeatBeltSignsOn")
 
 --FlightFactor
+ff_A320 = find_dataref("a320/Overhead/LightBelts")
 ff_A350 = find_dataref("1-sim/12/switch")
+ff_B757 = find_dataref("sim/cockpit2/switches/fasten_seat_belts")
+ff_B767 = find_dataref("sim/cockpit2/switches/fasten_seat_belts")
 
 --FlyJSim
 FJS722 = find_dataref("FJS/727/lights/FastenBeltsSwitch")
@@ -74,8 +74,12 @@ colimata = find_dataref("Colimata/CON_RP_LIGHT_sw_fasten_seatblts_i")
 --ssg
 ssg = find_dataref("SSG/EJET/SIGNS/fasten_belts_sw")
 
+--x-crafts
+xcrafts = find_dataref("sim/cockpit2/switches/fasten_seat_belts")
+
 --rotate
 rotate_md80 = find_dataref("Rotate/md80/systems/seatbelts_switch")
+rotate_md11 = find_dataref("Rotate/aircraft/controls/seatbelts_lts")
 
 --felis
 felis_T154 = find_dataref("sim/custom/switchers/ovhd/sign_belts")
@@ -83,7 +87,28 @@ felis_T154 = find_dataref("sim/custom/switchers/ovhd/sign_belts")
 --default
 default = find_dataref("sim/cockpit2/switches/fasten_seat_belts")
 
-function after_physics()
+function resetDataref()
+	inibuilds = 0
+	toliss = 0
+	ff_A350 = 0
+	ff_B757 = 0
+	ff_B767 = 0
+	FJS722 = 0
+	Q4XP = 0
+	laminarA333 = 0
+	zibo = 0
+	laminarB744 = 0
+	CL650 = 0
+	colimata = 0
+	ssg = 0
+	xcrafts = 0
+	rotate_md80 = 0
+	rotate_md11 = 0
+	felis_T154 = 0
+	default = 0
+end
+
+function seatBeltSign()
 	
 	aircraftList = 
 	{
@@ -109,11 +134,24 @@ function after_physics()
 			SeatbeltMonitor = 0
 		end
 	end,
-	["A320"] = function ()				--Toliss
-		if toliss == 1 then
+	["A320"] = function ()
+		if toliss == 1 then				--Toliss
 			SeatbeltMonitor = 1
 		else	
 			SeatbeltMonitor = 0
+		end
+		if ff_A320 == 2 then		--FlightFactor
+			SeatbeltMonitor = 1
+		else
+			if ff_A320 == 1 then
+				if elevation >= 3048 then
+					SeatbeltMonitor = 0
+				else
+					SeatbeltMonitor = 1
+				end
+			else
+				SeatbeltMonitor = 0
+			end		
 		end
 	end,
 	["A321"] = function ()				--Toliss
@@ -249,16 +287,115 @@ function after_physics()
 			end		
 		end
 	end,
+	["B752"] = function ()
+		if ff_B757 == 2 then			--FlightFactor
+			SeatbeltMonitor = 1
+		else
+			if ff_B757 == 1 then
+				if elevation >= 3048 then
+					SeatbeltMonitor = 0
+				else
+					SeatbeltMonitor = 1
+				end
+			else
+				SeatbeltMonitor = 0
+			end
+		end
+	end,
+	["B753"] = function ()
+		if ff_B757 == 2 then			--FlightFactor
+			SeatbeltMonitor = 1
+		else
+			if ff_B757 == 1 then
+				if elevation >= 3048 then
+					SeatbeltMonitor = 0
+				else
+					SeatbeltMonitor = 1
+				end
+			else
+				SeatbeltMonitor = 0
+			end
+		end
+	end,
+	["B762"] = function ()
+		if ff_B767 == 2 then			--FlightFactor
+			SeatbeltMonitor = 1
+		else
+			if ff_B767 == 1 then
+				if elevation >= 3048 then
+					SeatbeltMonitor = 0
+				else
+					SeatbeltMonitor = 1
+				end
+			else
+				SeatbeltMonitor = 0
+			end
+		end
+	end,
+	["B763"] = function ()
+		if ff_B767 == 2 then			--FlightFactor
+			SeatbeltMonitor = 1
+		else
+			if ff_B767 == 1 then
+				if elevation >= 3048 then
+					SeatbeltMonitor = 0
+				else
+					SeatbeltMonitor = 1
+				end
+			else
+				SeatbeltMonitor = 0
+			end
+		end
+	end,
+	["B764"] = function ()
+		if ff_B767 == 2 then			--FlightFactor
+			SeatbeltMonitor = 1
+		else
+			if ff_B767 == 1 then
+				if elevation >= 3048 then
+					SeatbeltMonitor = 0
+				else
+					SeatbeltMonitor = 1
+				end
+			else
+				SeatbeltMonitor = 0
+			end
+		end
+	end,
 	--embraer
-	["E170"] = function ()				-- SSG
-		if ssg == 1 then
+	["E170"] = function ()
+		if ssg == 1 then				-- SSG
+			SeatbeltMonitor = 1
+		else
+			SeatbeltMonitor = 0		
+		end
+		if xcrafts == 2 then			--X-Crafts
 			SeatbeltMonitor = 1
 		else
 			SeatbeltMonitor = 0		
 		end
 	end,
-	["E195"] = function ()				-- SSG
-		if ssg == 1 then
+	["E175"] = function ()
+		if xcrafts == 2 then			--X-Crafts
+			SeatbeltMonitor = 1
+		else
+			SeatbeltMonitor = 0		
+		end
+	end,
+	["E190"] = function ()
+		if xcrafts == 2 then			--X-Crafts
+			SeatbeltMonitor = 1
+		else
+			SeatbeltMonitor = 0		
+		end
+	end,
+	["E195"] = function ()
+		if ssg == 1 then				-- SSG
+			SeatbeltMonitor = 1
+		else
+			SeatbeltMonitor = 0		
+		end
+		if xcrafts == 2 then			--X-Crafts
 			SeatbeltMonitor = 1
 		else
 			SeatbeltMonitor = 0		
@@ -270,6 +407,21 @@ function after_physics()
 			SeatbeltMonitor = 1
 		else
 			if rotate_md80 == -1 then
+				if elevation >= 3048 then
+					SeatbeltMonitor = 0
+				else
+					SeatbeltMonitor = 1
+				end
+			else
+				SeatbeltMonitor = 0
+			end		
+		end
+	end,
+	["MD11"] = function ()				--Rotate
+		if rotate_md11 == 2 then
+			SeatbeltMonitor = 1
+		else
+			if rotate_md11 == 1 then
 				if elevation >= 3048 then
 					SeatbeltMonitor = 0
 				else
@@ -343,10 +495,12 @@ function after_physics()
 		end
 	end
 	
-	if (baseSeatbeltDataRef1 ~= SeatbeltMonitor) or (baseSeatbeltDataRef2 ~= SeatbeltMonitor) then
-		baseSeatbeltDataRef1 = SeatbeltMonitor
-		baseSeatbeltDataRef2 = SeatbeltMonitor
-	end
-	
 end
 
+function after_physics()
+	seatBeltSign()
+end
+
+function flight_start()
+	resetDataref()
+end
