@@ -39,7 +39,8 @@
 
 -- Maybe change to xlua instead of FlyWithLua?
 
-SeatbeltMonitor = create_dataref("FlyWithLua/SLCSeatbelts", "number")
+defSeat = find_dataref("sim/cockpit2/switches/fasten_seat_belts")
+SeatbeltMonitor = create_dataref("xlua/SLCSeatbelts", "number")
 
 elevation = find_dataref("sim/graphics/view/view_elevation_msl_mtrs")
 aircraftICAO = find_dataref("sim/aircraft/view/acf_ICAO")
@@ -495,7 +496,7 @@ function seatBeltSign()
 			end
 		end
 	end
-	
+	defSeat = SeatbeltMonitor
 end
 
 function after_physics()
